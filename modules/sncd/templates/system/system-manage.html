@@ -1,0 +1,96 @@
+<div class="container-wrapper">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h3>系统管理</h3>
+            <p>提供系统相关信息及功能的配置</p>
+        </div>
+    </div>
+
+    <!--这一个div仅做测试用-->
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">会员等级管理平台</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>版本</th>
+                    <th>代码库</th>
+                    <th>系统环境</th>
+                    <th>其他配置</th>
+                    <th>质量趋势</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="javascript:void(0)" ng-click="getSystemVersions(sys, 1)">进行中(3)</a><br/>
+                        <a href="javascript:void(0)" ng-click="getSystemVersions(sys, 2)">已结束(2)</a><br/>
+                        <a href="javascript:void(0)" ng-click="createVersion(sys)">创建版本</a>
+                    </td>
+                    <td>
+                        SNCD
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)">创建环境</a><br/>
+                        <a href="javascript:void(0)">管理环境</a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)">团队</a>
+                        <a href="javascript:void(0)">应用包</a>
+                        <a href="javascript:void(0)" ng-click="goPackageConfig(sys);">打包配置</a>
+                    </td>
+                    <td>
+                        1
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel panel-default" ng-repeat="sys in sysList">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{sys.sysCnname}}</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>版本</th>
+                    <th>代码库</th>
+                    <th>系统环境</th>
+                    <th>其他配置</th>
+                    <th>质量趋势</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <a href="javascript:void(0)" ng-click="getSystemVersions(sys, 1)">进行中({{sys.processNum}})</a>
+                        <a href="javascript:void(0)" ng-click="getSystemVersions(sys, 2)">已结束({{sys.finishNum}})</a>
+                        <a href="javascript:void(0)" ng-click="createVersion(sys)">创建版本</a>
+                    </td>
+                    <td>
+                        {{sys.reposName}}
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)">创建环境</a><br>
+                        <a href="javascript:void(0)">管理环境</a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)">团队</a>
+                        <a href="javascript:void(0)">应用包</a>
+                        <a href="javascript:void(0)" ng-click="goPackageConfig(sys);">打包配置</a>
+                    </td>
+                    <td>
+                        1
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
