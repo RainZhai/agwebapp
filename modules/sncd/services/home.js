@@ -23,7 +23,6 @@ angular.module("sncd").service('HomeService', ['mockService', 'HttpService', '$q
                     defer.reject(errMsg);
                     break;
             }
-
             return defer.promise;
         }
 

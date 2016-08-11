@@ -191,7 +191,7 @@ angular.module('sncd').controller('HomeCtrl', ['$scope', 'HomeService', '$state'
 
         function getCustomerInfo(params){
         	HomeService.getCustomerInfo(params).then(function (result) {
-            	$scope.userName = result.userName;
+                $scope.userName = result.userName;
              	$scope.role = result.role;
             });
         }
@@ -201,7 +201,7 @@ angular.module('sncd').controller('HomeCtrl', ['$scope', 'HomeService', '$state'
               	$scope.pager.totalCount = result.totalDataCount;
                 $scope.pager.pageNumber = result.pageNumber;
             	$scope.$broadcast('sn.controls.pager:toPage', $scope.pager.pageNumber);
-            	$scope.branchList = result.datas;
+                $scope.branchList = result.datas;
             });
         }
         
