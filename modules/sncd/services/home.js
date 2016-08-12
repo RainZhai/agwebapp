@@ -125,7 +125,7 @@ angular.module("sncd").service('HomeService', ['mockService', 'HttpService', '$q
                  data: [12,21,10,4,12]
                  }
                  return handleRspData(mockData);*/
-                return HttpService.post("/angular/home/getQualityAnalysis.htm", params).then(function (data) {
+                return HttpService.post("/angular/home/getQualityAnalysis2.htm", params).then(function (data) {
                     return handleRspData(data);
                 });
             }

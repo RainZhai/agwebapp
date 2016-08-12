@@ -22,22 +22,16 @@ Mock.mock("/angular/home/getMyDynamicState.htm", {
      data: {
     datas: [
         {
-            author: 'suning001',
-            project: 'SNCD',
+            operator: 'suning001',
+            project: 'AAA',
             task: '修复缺陷分支',
-            time: 1440056486854
+            updateTime: 1440056486854
         },
         {
-            author: 'suning002',
-            project: 'SNCD',
+            operator: 'suning002',
+            project: 'CCC',
             task: '修复缺陷分支',
-            time: 1442592000000
-        },
-        {
-            author: 'suning003',
-            project: 'SNCD',
-            task: '修复缺陷分支',
-            time: 1442692000000
+            updateTime: 1442592000000
         }
     ]
      }
@@ -72,12 +66,26 @@ Mock.mock("/angular/home/getCustomerInfo.htm", {
 Mock.mock("/angular/home/getQualityAnalysis.htm", {
     errCode: '0',
     errMsg: '',
-    data: [
-        { value: 335, name: '阻塞原因1' },
-        { value: 310, name: '阻塞原因2' },
-        { value: 234, name: '阻塞原因3' },
-        { value: 135, name: '阻塞原因4' },
-        { value: 1548, name: '阻塞原因5' },
-        { value: 345, name: '阻塞原因6' }
-    ]
+    data: {
+        analysis: [
+            { value: 335, name: '项目1' },
+            { value: 310, name: '项目2' },
+            { value: 234, name: '项目3' },
+            { value: 135, name: '项目4' },
+            { value: 1548, name: '项目5' },
+            { value: 345, name: '项目6' }
+        ]
+    }
+});
+Mock.mock("/angular/home/getQualityAnalysis2.htm", {
+    errCode: '0',
+    errMsg: '',
+    data: {analysis: [
+            { value: 335, name: '项目1' },
+            { value: 310, name: '项目2' },
+            { value: 234, name: '项目3' },
+            { value: 135, name: '项目4' },
+            { value: 1548, name: '项目5' },
+            { value: 345, name: '项目6' }
+        ]}
 });
