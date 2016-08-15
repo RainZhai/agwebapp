@@ -3,7 +3,7 @@ app = angular.module("sncd", ["ui.router", "sn.controls"]);
 //app = angular.module('sncd', []);
 //使用mockjax方法覆盖Ajax请求
 Mock.mockjax(app);
-angular.module("sncd").value('baseUrl', '/udmp-web-in');
+angular.module("sncd").value('baseUrl', '/webapp');
 
 angular.module("sncd").config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/dashboard");

@@ -1,8 +1,3 @@
-Mock.mock('http://g.cn', {
-    'name': '@name()',
-    'age|1-100': 100,
-    'color': '@color'
-});
 Mock.mock('/angular/home/getTrend.htm', {
     errCode: '0',
     errMsg: '',
@@ -19,22 +14,22 @@ Mock.mock('/angular/home/getTrend.htm', {
 Mock.mock("/angular/home/getMyDynamicState.htm", {
     errCode: '0',
     errMsg: '',
-     data: {
-    datas: [
-        {
-            operator: 'suning001',
-            project: 'AAA',
-            task: '修复缺陷分支',
-            updateTime: 1440056486854
-        },
-        {
-            operator: 'suning002',
-            project: 'CCC',
-            task: '修复缺陷分支',
-            updateTime: 1442592000000
-        }
-    ]
-     }
+    data: {
+        datas: [
+            {
+                operator: 'suning001',
+                project: 'AAA',
+                task: '修复缺陷分支',
+                updateTime: 1440056486854
+            },
+            {
+                operator: 'suning002',
+                project: 'CCC',
+                task: '修复缺陷分支',
+                updateTime: 1442592000000
+            }
+        ]
+    }
 });
 Mock.mock("/angular/home/getSysBranchInfo.htm", {
     errCode: '0',
@@ -80,12 +75,59 @@ Mock.mock("/angular/home/getQualityAnalysis.htm", {
 Mock.mock("/angular/home/getQualityAnalysis2.htm", {
     errCode: '0',
     errMsg: '',
-    data: {analysis: [
+    data: {
+        analysis: [
             { value: 335, name: '项目1' },
             { value: 310, name: '项目2' },
             { value: 234, name: '项目3' },
             { value: 135, name: '项目4' },
             { value: 1548, name: '项目5' },
             { value: 345, name: '项目6' }
-        ]}
+        ]
+    }
+});
+//系统管理
+Mock.mock("/angular/system/mySystemPage.htm", {
+    errCode: '0',
+    errMsg: '',
+    data: {
+        totalDataCount: 11,
+        pageNumber:1,
+        datas: [
+            {sysId:"111", sysCnname: '项目1', processNum: 1, finishNum: 2, reposName: "wsd" },
+            {sysId:"112", sysCnname: '项目2', processNum: 1, finishNum: 2, reposName: "wsd" },
+            {sysId:"113", sysCnname: '项目3', processNum: 1, finishNum: 2, reposName: "wsd" },
+            {sysId:"114", sysCnname: '项目4', processNum: 1, finishNum: 2, reposName: "wsd" },
+            {sysId:"115", sysCnname: '项目5', processNum: 1, finishNum: 2, reposName: "wsd" },
+            {sysId:"116", sysCnname: '项目6', processNum: 1, finishNum: 2, reposName: "wsd" },
+            {sysId:"117", sysCnname: '项目7', processNum: 1, finishNum: 2, reposName: "wsd" },
+            {sysId:"118", sysCnname: '项目8', processNum: 1, finishNum: 2, reposName: "wsd" },
+            {sysId:"119", sysCnname: '项目9', processNum: 1, finishNum: 2, reposName: "wsd" },
+            {sysId:"120", sysCnname: '项目10', processNum: 1, finishNum: 2, reposName: "wsd" },
+            {sysId:"121", sysCnname: '项目11', processNum: 1, finishNum: 2, reposName: "wsd" }
+        ]
+    }
+});
+//进行中版本列表
+Mock.mock("/angular/version/myversion.htm", {
+    errCode: '0',
+    errMsg: '',
+    data: {
+        totalDataCount: 11,
+        pageNumber: 1,
+        userId: "21323",
+        operationBoMap: "11",
+        datas: [
+            { vername: '版本1', state: 1, qualityTrend: "1" }
+        ]
+    }
+});
+//添加版本
+Mock.mock("/angular/version/createVersion.htm", {
+    errCode: '0',
+    errMsg: '',
+    data: {
+        data:
+        { sysCnname: 'aa', processNum: 0, finishNum: 0, reposName: "aa" }
+    }
 });

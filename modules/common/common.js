@@ -242,7 +242,6 @@ angular.module("sn.controls").service("AlertService", ["$http", "$document", "$q
                 if (dialogCounter == 1) {
                     $document.find("body").append(mask);
                 }
-
                 var data = $rootScope.$new();
                 angular.extend(data, param);
 
@@ -260,7 +259,6 @@ angular.module("sn.controls").service("AlertService", ["$http", "$document", "$q
                 };
 
                 dialog = $compile(dialogTpl)(data);
-
                 $document.find("body").append(dialog);
                 dialog.css("display", "block");
                 dialog.css("z-index", zIndex + dialogCounter);
@@ -563,7 +561,6 @@ angular.module("sn.controls").directive("snPager", ["templatePath", function (te
 
             $scope.totalPages = 1;
             $scope.offset = 0;
-
             $scope.$watch("totalItems", function () {
                 if ($scope.totalItems % $scope.itemsPerPage == 0) {
                     $scope.totalPages = $scope.totalItems / $scope.itemsPerPage;
@@ -574,7 +571,6 @@ angular.module("sn.controls").directive("snPager", ["templatePath", function (te
                 if ($scope.totalPages == 0) {
                     $scope.totalPages = 1;
                 }
-
                 $scope.offset = 0;
                 resetPageList();
                 $scope.currentPage = 0;

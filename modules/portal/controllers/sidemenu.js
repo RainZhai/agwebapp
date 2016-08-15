@@ -9,14 +9,14 @@ angular.module("sncd").controller('SideMenuCtrl', ["$rootScope", "$state", funct
         {code: "2", name: "版本管理", icon: "fa fa-cubes", state: "VersionManage"},
         {code: "3", name: "质量中心", icon: "fa fa-heartbeat",state:"QualityCenter"},
         {code: "4", name: "发布", icon: "fa fa-cloud",state:"Publish"},
-        {code: "5", name: "SPA自动化部署", icon: "fa fa-cubes",state:""},
-        {code: "6", name: "技术组件库", icon: "fa fa-server",state:""},
-        {code: "7", name: "文档部门库", icon: "fa fa-cubes", state: ""},
-        {code: "8", name: "动态", icon: "fa fa-heartbeat",state:""},
-        {code: "9", name: "运维管理", icon: "fa fa-cloud",state:""},
-        {code: "10", name: "配置审计", icon: "fa fa-cubes",state:""},
-        {code: "11", name: "平台管理", icon: "fa fa-cloud",state:""},
-        {code: "12", name: "工具视图", icon: "fa fa-cubes", state: ""},
+        // {code: "5", name: "SPA自动化部署", icon: "fa fa-cubes",state:""},
+        // {code: "6", name: "技术组件库", icon: "fa fa-server",state:""},
+        // {code: "7", name: "文档部门库", icon: "fa fa-cubes", state: ""},
+        // {code: "8", name: "动态", icon: "fa fa-heartbeat",state:""},
+        // {code: "9", name: "运维管理", icon: "fa fa-cloud",state:""},
+        // {code: "10", name: "配置审计", icon: "fa fa-cubes",state:""},
+        // {code: "11", name: "平台管理", icon: "fa fa-cloud",state:""},
+        // {code: "12", name: "工具视图", icon: "fa fa-cubes", state: ""},
 
         {parent: "2", code: "2-0", name: "创建版本", icon: "fa fa-anchor", state: "CreateVersion"},
         {parent: "2", code: "2-1", name: "进行中版本", icon: "fa fa-hdd-o", state: "VersionInProgress"},
@@ -26,11 +26,11 @@ angular.module("sncd").controller('SideMenuCtrl', ["$rootScope", "$state", funct
         {parent: "3", code: "3-0", name: "质量对比", icon: "fa fa-umbrella", state: "QualityCompare"},
         {parent: "3", code: "3-1", name: "我的质量", icon: "fa fa-stethoscope", state: "MyQuality"},
 
-        {parent: "5", code: "5-0", name: "SPA请求号", icon: "fa fa-umbrella", state: ""},
-        {parent: "5", code: "5-1", name: "SPA发布单", icon: "fa fa-stethoscope", state: ""},
+        // {parent: "5", code: "5-0", name: "SPA请求号", icon: "fa fa-umbrella", state: ""},
+        // {parent: "5", code: "5-1", name: "SPA发布单", icon: "fa fa-stethoscope", state: ""},
 
-        {parent: "9", code: "9-0", name: "脚本管理", icon: "fa fa-umbrella", state: ""},
-        {parent: "9", code: "9-1", name: "操作日志", icon: "fa fa-stethoscope", state: ""}
+        // {parent: "9", code: "9-0", name: "脚本管理", icon: "fa fa-umbrella", state: ""},
+        // {parent: "9", code: "9-1", name: "操作日志", icon: "fa fa-stethoscope", state: ""}
     ];
 
     var menuMap = {};

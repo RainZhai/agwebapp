@@ -33,6 +33,7 @@ angular.module('sncd').controller('VersionInProgressCtrl', ['$scope', 'VersionMa
                 $scope.versList = result.datas;
                 $scope.type =  $stateParams.type;
                 $scope.operationBoMap = result.operationBoMap;
+                debugger;
                 $scope.sysId= $stateParams.sysId;
             });
         }

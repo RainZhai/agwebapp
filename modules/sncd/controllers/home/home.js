@@ -204,9 +204,10 @@ angular.module('sncd').controller('HomeCtrl', ['$scope', 'HomeService', '$state'
                             color: function (params) {
                                 // build a color map as your need.
                                 var colorList = [
-                                    '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B'
+                                     '#C1232B','#B5C334','#FCCE10','#E87C25','#27727B'
                                 ];
-                                return colorList[params.dataIndex]
+                                //return colorList[params.dataIndex]
+                                return colorList[1]
                             },
                             label: {
                                 show: true,

@@ -1,54 +1,52 @@
-angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService', '$state',
-    function ($scope, SystemService, $state) {
+angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService', 'AlertService', '$state',
+    function ($scope, SystemService, AlertService, $state) {
 
         'use strict';
 
         var vm = $scope,
             formData = vm.formData = {},
             sysMap = {},
+
             pager = vm.pager = {
-                pageNumber: 1,
-                totalCount: 0, //总条数
-                pageSize: 10
+                currentPage: 0,
+                itemsPerPage: 5,
+                listSize: 5,
+                totalItems: 0
             };
 
         //$scope.currWorkNo = $rootScope.currUser && $rootScope.currUser.workNo;
 
-        ////////////////functions/////////////////
         function init() {
-
             getMySystemList();
-
         }
 
         // 查询系统列表
         function getMySystemList() {
 
             var params = {
-                pageNum: $scope.pager.pageNumber,
-                keyword: $scope.keyword
+                pageNum: vm.pager.currentPage,
+                keyword: vm.keyword
             };
 
             SystemService.getMySystem(params).then(function (result) {
-                $scope.pager.totalCount = result.totalDataCount;
-                $scope.pager.pageNumber = result.pageNumber;
-                $scope.$broadcast('sn.controls.pager:toPage', $scope.pager.pageNumber);
-                $scope.sysList = result.datas;
-
-//        for(var i = 0; i < $scope.sysList.length; i++){
-//            sysMap[$scope.sysList[i].id] = $scope.sysList[i];
-//        }
-//
-//        SystemService.getVersionNum().then(function(result){
-//            $scope.sysPart = result.datas;
-//            for(var j = 0; j < $scope.sysPart.length; j++){
-//              sysMap[$scope.sysPart[j].id].trend = $scope.sysPart[j].trend;
-//            }
-//          })
+                vm.pager.totalItems = result.totalDataCount;
+                //定位到某一页
+                vm.pager.currentPage = result.pageNumber;
+                vm.$broadcast('sn.controls.pager:toPage', vm.pager.currentPage);
+                vm.sysList = result.datas;
             });
         }
 
-        /////////////////$scope functions/////////////////
+
+        $scope.deleteItem = function (item) {
+            AlertService.confirm({
+                title: "删除",
+                content: "确定删除吗?"
+            }).then(function (d) {
+                //删除一行的内容
+                $scope.sysList.splice($scope.sysList.indexOf(item), 1);
+            }, function () { }, function () { });
+        };
 
         $scope.getSystemVersions = function (sys, type) {
             $state.go("VersionManage", {
@@ -59,7 +57,7 @@ angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService'
 
         //搜索
         $scope.search = function () {
-            $scope.pager.pageNumber = 1;
+            vm.pager.currentPage = 1;
             getMySystemList();
         }
 
@@ -72,7 +70,7 @@ angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService'
 
         //跳转打包配置
         $scope.goPackageConfig = function (system) {
-            SystemService.createOrDetail({"sysId": system.sysId}).then(function (result) {
+            SystemService.createOrDetail({ "sysId": system.sysId }).then(function (result) {
                 if (result.showType == "1") {//进入详情
                     $state.go("PackageConfig", {
                         sysId: system.sysId
@@ -85,11 +83,11 @@ angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService'
             });
         }
 
-        ///////////////////Events//////////////////
+        //Events
         //分页
         vm.$on('sn.controls.pager:pageIndexChanged', function (evt, page) { // 分页操作
             evt.stopPropagation();
-            getMySystemList(page.pageIndex + 1);
+            getMySystemList();
         });
 
         init();
