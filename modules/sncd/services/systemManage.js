@@ -74,6 +74,12 @@ angular.module('sncd').service('SystemService', ['mockService', 'HttpService', '
                     return handleRspData(data);
                 });
             },
+            //更新一条系统信息
+            updateItem: function (params) {
+                return HttpService.post("/angular/system/updateSystem.htm", params).then(function (data) {
+                    return handleRspData(data);
+                });
+            },
             //获取全部中心list
             getOrgList: function () {
                 return HttpService.post("/angular/system/allOrgList.htm").then(function (data) {
@@ -87,12 +93,6 @@ angular.module('sncd').service('SystemService', ['mockService', 'HttpService', '
                     return handleRspData(data);
                 });
             },
-            //获取某一系统的信息
-//        getSys: function (params){
-//        	return	HttpService.post("/angular/system/sysDetailInfo.htm", params).then(function(data) {
-//                return handleRspData(data);
-//             });
-//        },
             //获取系统下的应用包
             getPackageBySys:function (params){
                 return	HttpService.get("/angular/package/getPackageBySys.htm", params).then(function(data) {

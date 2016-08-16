@@ -8,7 +8,7 @@ angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService'
             sysMap = {},
 
             pager = vm.pager = {
-                currentPage: 0,
+                currentPage: 1,
                 itemsPerPage: 5,
                 listSize: 5,
                 totalItems: 0
@@ -17,14 +17,14 @@ angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService'
         //$scope.currWorkNo = $rootScope.currUser && $rootScope.currUser.workNo;
 
         function init() {
-            getMySystemList();
+            getMySystemList(vm.pager.currentPage);
         }
 
         // 查询系统列表
-        function getMySystemList() {
+        function getMySystemList(pageNumber) {
 
             var params = {
-                pageNum: vm.pager.currentPage,
+                pageNum: pageNumber,
                 keyword: vm.keyword
             };
 
@@ -58,13 +58,24 @@ angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService'
         //搜索
         $scope.search = function () {
             vm.pager.currentPage = 1;
-            getMySystemList();
+            getMySystemList(vm.pager.currentPage);
         }
 
 
         $scope.createVersion = function (sys) {
             $state.go("CreateVersion", {
                 id: sys.sysId
+            });
+        };
+        //更新记录
+        $scope.updateItem = function (sys) {
+            SystemService.updateItem(sys).then(function (result) {
+                if (result.data) {
+                    AlertService.alert({
+                        title: "更新成功",
+                        content: result.data.sysCnname + "更新成功"
+                    });
+                }
             });
         };
 
@@ -85,9 +96,10 @@ angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService'
 
         //Events
         //分页
-        vm.$on('sn.controls.pager:pageIndexChanged', function (evt, page) { // 分页操作
+        vm.$on('sn.controls.pager:pageIndexChanged', function (evt, page) {
             evt.stopPropagation();
-            getMySystemList();
+            pager.currentPage = page.pageIndex + 1;
+            getMySystemList(pager.currentPage);
         });
 
         init();

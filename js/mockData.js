@@ -92,22 +92,33 @@ Mock.mock("/angular/system/mySystemPage.htm", {
     errMsg: '',
     data: {
         totalDataCount: 11,
-        pageNumber:1,
+        pageNumber: 1,
         datas: [
-            {sysId:"111", sysCnname: '项目1', processNum: 1, finishNum: 2, reposName: "wsd" },
-            {sysId:"112", sysCnname: '项目2', processNum: 1, finishNum: 2, reposName: "wsd" },
-            {sysId:"113", sysCnname: '项目3', processNum: 1, finishNum: 2, reposName: "wsd" },
-            {sysId:"114", sysCnname: '项目4', processNum: 1, finishNum: 2, reposName: "wsd" },
-            {sysId:"115", sysCnname: '项目5', processNum: 1, finishNum: 2, reposName: "wsd" },
-            {sysId:"116", sysCnname: '项目6', processNum: 1, finishNum: 2, reposName: "wsd" },
-            {sysId:"117", sysCnname: '项目7', processNum: 1, finishNum: 2, reposName: "wsd" },
-            {sysId:"118", sysCnname: '项目8', processNum: 1, finishNum: 2, reposName: "wsd" },
-            {sysId:"119", sysCnname: '项目9', processNum: 1, finishNum: 2, reposName: "wsd" },
-            {sysId:"120", sysCnname: '项目10', processNum: 1, finishNum: 2, reposName: "wsd" },
-            {sysId:"121", sysCnname: '项目11', processNum: 1, finishNum: 2, reposName: "wsd" }
+            { sysId: "111", sysCnname: '项目1', environment: 'linux', processNum: 1, finishNum: 2, reposName: "codebase" },
+            { sysId: "112", sysCnname: '项目2', environment: 'window', processNum: 1, finishNum: 2, reposName: "base1" },
+            { sysId: "113", sysCnname: '项目3', environment: 'unix', processNum: 1, finishNum: 2, reposName: "poke" },
+            { sysId: "114", sysCnname: '项目4', environment: 'linux', processNum: 1, finishNum: 2, reposName: "uii" },
+            { sysId: "115", sysCnname: '项目5', environment: 'window', processNum: 1, finishNum: 2, reposName: "hubo" },
+            { sysId: "116", sysCnname: '项目6', environment: 'linux', processNum: 1, finishNum: 2, reposName: "quki" },
+            { sysId: "117", sysCnname: '项目7', environment: 'window', processNum: 1, finishNum: 2, reposName: "goo" },
+            { sysId: "118", sysCnname: '项目8', environment: 'linux2', processNum: 1, finishNum: 2, reposName: "codebase" },
+            { sysId: "119", sysCnname: '项目9', environment: 'linux1', processNum: 1, finishNum: 2, reposName: "codebase" },
+            { sysId: "120", sysCnname: '项目10', environment: 'linux3', processNum: 1, finishNum: 2, reposName: "codebase" },
+            { sysId: "121", sysCnname: '项目11', environment: 'linux1', processNum: 1, finishNum: 2, reposName: "codebase" }
         ]
     }
 });
+
+//更新系统信息
+Mock.mock("/angular/system/updateSystem.htm", {
+    errCode: '0',
+    errMsg: '',
+    data: {
+        data: { sysId: "111", sysCnname: '项目1', environment: 'linux22', processNum: 1, finishNum: 2, reposName: "codebase" }
+        
+    }
+});
+
 //进行中版本列表
 Mock.mock("/angular/version/myversion.htm", {
     errCode: '0',
@@ -117,8 +128,11 @@ Mock.mock("/angular/version/myversion.htm", {
         pageNumber: 1,
         userId: "21323",
         operationBoMap: "11",
+        sysCnname: "GIH代码平台",
         datas: [
-            { vername: '版本1', state: 1, qualityTrend: "1" }
+            { vername: '版本1', state: 1, qualityTrend: "1" },
+            { vername: '版本2', state: 1, qualityTrend: "1" },
+            { vername: '版本3', state: 1, qualityTrend: "1" }
         ]
     }
 });
