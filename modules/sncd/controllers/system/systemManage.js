@@ -1,5 +1,5 @@
-angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService', 'AlertService', '$state',
-    function ($scope, SystemService, AlertService, $state) {
+angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService', 'ModalService', 'AlertService', '$state',
+    function ($scope, SystemService, ModalService, AlertService, $state) {
 
         'use strict';
 
@@ -36,7 +36,19 @@ angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService'
                 vm.sysList = result.datas;
             });
         }
-
+        $scope.addSysDialog = function (item) {
+            // DialogService.modal({
+            //     url: "/angular/system/dialog.htm"
+            // });
+            ModalService.showModal({
+            templateUrl: 'modules/sncd/templates/system/create-system.html',
+            controller: 'CreateSystemCtrl'
+            }).then(function (modal) {
+                modal.close.then(function (result) {
+                    //$scope.customResult = "All good!";
+                });
+            });
+        };
 
         $scope.deleteItem = function (item) {
             AlertService.confirm({

@@ -145,3 +145,5 @@ Mock.mock("/angular/version/createVersion.htm", {
         { sysCnname: 'aa', processNum: 0, finishNum: 0, reposName: "aa" }
     }
 });
+Mock.mock("/angular/system/dialog.htm","<div>hhh</div>" 
+);

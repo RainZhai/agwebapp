@@ -9,14 +9,6 @@ angular.module("sncd").controller('SideMenuCtrl', ["$rootScope", "$state", funct
         { code: "2", name: "版本管理", icon: "fa fa-cubes", state: "VersionManage" },
         { code: "3", name: "质量中心", icon: "fa fa-heartbeat", state: "QualityCenter" },
         { code: "4", name: "发布", icon: "fa fa-cloud", state: "Publish" },
-        // {code: "5", name: "SPA自动化部署", icon: "fa fa-cubes",state:""},
-        // {code: "6", name: "技术组件库", icon: "fa fa-server",state:""},
-        // {code: "7", name: "文档部门库", icon: "fa fa-cubes", state: ""},
-        // {code: "8", name: "动态", icon: "fa fa-heartbeat",state:""},
-        // {code: "9", name: "运维管理", icon: "fa fa-cloud",state:""},
-        // {code: "10", name: "配置审计", icon: "fa fa-cubes",state:""},
-        // {code: "11", name: "平台管理", icon: "fa fa-cloud",state:""},
-        // {code: "12", name: "工具视图", icon: "fa fa-cubes", state: ""},
 
         { parent: "2", code: "2-0", name: "创建版本", icon: "fa fa-anchor", state: "CreateVersion" },
         { parent: "2", code: "2-1", name: "进行中版本", icon: "fa fa-hdd-o", state: "VersionInProgress" },
@@ -24,16 +16,37 @@ angular.module("sncd").controller('SideMenuCtrl', ["$rootScope", "$state", funct
         { parent: "2", code: "2-3", name: "我的发布单", icon: "fa fa-hdd-o", state: "ReleaseList" },
 
         { parent: "3", code: "3-0", name: "质量对比", icon: "fa fa-umbrella", state: "QualityCompare" },
-        { parent: "3", code: "3-1", name: "我的质量", icon: "fa fa-stethoscope", state: "MyQuality" },
-
-        // {parent: "5", code: "5-0", name: "SPA请求号", icon: "fa fa-umbrella", state: ""},
-        // {parent: "5", code: "5-1", name: "SPA发布单", icon: "fa fa-stethoscope", state: ""},
-
-        // {parent: "9", code: "9-0", name: "脚本管理", icon: "fa fa-umbrella", state: ""},
-        // {parent: "9", code: "9-1", name: "操作日志", icon: "fa fa-stethoscope", state: ""}
+        { parent: "3", code: "3-1", name: "我的质量", icon: "fa fa-stethoscope", state: "MyQuality" }
     ];
 
     var menuMap = {};
+    var util = {};
+    /**
+     * 浏览器的特性的简单检测，并非精确判断。
+     */
+    function detectBrowser(ns) {
+        var ua = ns.ua = navigator.userAgent;
+        ns.isWebKit = (/webkit/i).test(ua);
+        ns.isMozilla = (/mozilla/i).test(ua);
+        ns.isIE = (/msie/i).test(ua);
+        ns.isFirefox = (/firefox/i).test(ua);
+        ns.isChrome = (/chrome/i).test(ua);
+        ns.isSafari = (/safari/i).test(ua) && !this.isChrome;
+        ns.isMobile = (/mobile/i).test(ua);
+        ns.isOpera = (/opera/i).test(ua);
+        ns.isIOS = (/ios/i).test(ua);
+        ns.isIpad = (/ipad/i).test(ua);
+        ns.isIpod = (/ipod/i).test(ua);
+        ns.isIphone = (/iphone/i).test(ua) && !this.isIpod;
+        ns.isAndroid = (/android/i).test(ua);
+        ns.supportStorage = "localStorage" in window;
+        ns.supportOrientation = "orientation" in window;
+        ns.supportDeviceMotion = "ondevicemotion" in window;
+        ns.supportTouch = "ontouchstart" in window;
+        ns.supportCanvas = document.createElement("canvas").getContext !== null;
+        ns.cssPrefix = ns.isWebKit ? "webkit" : ns.isFirefox ? "Moz" : ns.isOpera ? "O" : ns.isIE ? "ms" : "";
+    };
+    detectBrowser(util);
 
     for (var i = 0; i < menus.length; i++) {
         var menuItem = menus[i];
@@ -63,8 +76,10 @@ angular.module("sncd").controller('SideMenuCtrl', ["$rootScope", "$state", funct
         }else {
             this.selectedMenu = menu.parentMenu;
         }
-        //sidebar伸展
-        $rootScope.sidebarCollapsed = !$rootScope.sidebarCollapsed;
+        if(util.isMobile && util.supportTouch){
+            //sidebar伸展
+            $rootScope.sidebarCollapsed = !$rootScope.sidebarCollapsed;
+        }
     };
 
     this.selectMenu2 = function (menu) {
@@ -74,8 +89,10 @@ angular.module("sncd").controller('SideMenuCtrl', ["$rootScope", "$state", funct
                 $state.go(menu.state);
             }
         }
-        //sidebar伸展
-        $rootScope.sidebarCollapsed = !$rootScope.sidebarCollapsed;
+        if(util.isMobile && util.supportTouch){
+            //sidebar伸展
+            $rootScope.sidebarCollapsed = !$rootScope.sidebarCollapsed;
+        }
     };
 
     this.isMenuSelected = function (menuItem) {

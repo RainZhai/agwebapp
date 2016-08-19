@@ -3,6 +3,10 @@
         <div class="panel-body">
             <h3>系统管理</h3>
             <p>提供系统相关信息及功能的配置</p>
+            <div class="row">
+                <div class="col-xs-2 col-md-2"><button type="button" class="btn btn-block btn-info" ng-click="addSysDialog()">新增</button></div>
+                <div class="col-xs-10 col-md-10"></div>
+            </div>
         </div>
     </div>
     <div class="form-group">
@@ -11,7 +15,9 @@
     </div>
     <div class="panel panel-default" ng-repeat="sys in sysList|filter:titleFilter">
         <div class="panel-heading">
-            <h3 class="panel-title">{{sys.sysCnname}}</h3>
+            <h3 class="panel-title">{{sys.sysCnname}}
+                <a ui-sref="VersionDetail" class="pull-right">详情</a>
+            </h3>
         </div>
         <div class="panel-body">
             <table class="table">
@@ -20,7 +26,7 @@
                         <th>版本</th>
                         <th>代码库</th>
                         <th>系统环境</th>
-                        <th>质量趋势</th>
+                        <th>趋势</th>
                         <th>操作</th>
                     </tr>
                 </thead>
@@ -36,7 +42,7 @@
                         </td>
                         <td>
                             <span ng-if="!sys.$edit">{{sys.environment}}</span>
-                            <div ng-if="sys.$edit"><input type="text" ng-model="sys.environment"></div>
+                            <div ng-if="sys.$edit"><input class="form-control" type="text" ng-model="sys.environment"></div>
                         </td>
                         <td>
                             1

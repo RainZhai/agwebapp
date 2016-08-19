@@ -1,4 +1,4 @@
-app = angular.module("sncd", ["ui.router", "sn.controls"]);
+app = angular.module("sncd", ["ui.router", "sn.controls","angularModalService","ngAnimate"]);
  
 //app = angular.module('sncd', []);
 //使用mockjax方法覆盖Ajax请求
@@ -28,6 +28,11 @@ angular.module("sncd").config(function($stateProvider, $urlRouterProvider) {
             url: '/system-manage',
             templateUrl: 'modules/sncd/templates/system/system-manage.html',
             controller: 'SystemManageCtrl'
+        })
+        .state('CreateSystem', {
+            url: '/create-system',
+            templateUrl: 'modules/sncd/templates/system/create-system.html',
+            controller: 'CreateSystemCtrl'
         })
 
         //版本管理
@@ -71,7 +76,7 @@ angular.module("sncd").config(function($stateProvider, $urlRouterProvider) {
         })
         .state('SystemInfo', {
             parent: 'VersionDetail',
-            url: '/version-info',
+            url: '/system-info',
             templateUrl: 'modules/sncd/templates/sysAndVersInfo/system.html',
             controller: 'SystemInfoCtrl'
         })
