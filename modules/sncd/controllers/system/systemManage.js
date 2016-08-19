@@ -36,7 +36,7 @@ angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService'
                 vm.sysList = result.datas;
             });
         }
-        $scope.addSysDialog = function (item) {
+        $scope.addSysDialog = function () {
             // DialogService.modal({
             //     url: "/angular/system/dialog.htm"
             // });

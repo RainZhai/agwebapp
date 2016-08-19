@@ -1,11 +1,10 @@
-angular.module('sncd').controller('CreateSystemCtrl', ['$scope', 'SystemService', '$state', '$stateParams',
-    function ($scope, SystemService, $state, $stateParams) {
+angular.module('sncd').controller('CreateSystemCtrl', ['$scope', 'SystemService', '$state', '$stateParams', 'close', 
+    function ($scope, SystemService, $state, $stateParams,close) {
         var sysId = $stateParams.id;
         $scope.students = [
-            { Name: '小李', Id: '201401201', Grade: '计算机技术' },
-            { Name: '李磊', Id: '201401202', Grade: '计算机技术' }
+            { Name: '小李', Id: '201401201', Grade: '计算机技术' }
         ];
-        $scope.add = function () {       //添加学生函数
+        $scope.add = function () {
             $scope.students.push({ Name: $scope.newName, Id: $scope.newId, Grade: $scope.newGrade });
             $scope.newName = '';
             $scope.newId = '';
@@ -18,5 +17,13 @@ angular.module('sncd').controller('CreateSystemCtrl', ['$scope', 'SystemService'
                     data: result.data
                 });
             });
+        };
+
+        $scope.close = function(result) {
+            close();
+        };
+
+        $scope.save = function (result) {
+            close();
         };
     }]);
