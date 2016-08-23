@@ -41,11 +41,11 @@ angular.module('sncd').controller('SystemManageCtrl', ['$scope', 'SystemService'
             //     url: "/angular/system/dialog.htm"
             // });
             ModalService.showModal({
-            templateUrl: 'modules/sncd/templates/system/create-system.html',
-            controller: 'CreateSystemCtrl'
+                templateUrl: 'modules/sncd/templates/system/create-system.html',
+                controller: 'CreateSystemCtrl'
             }).then(function (modal) {
                 modal.close.then(function (result) {
-                    //$scope.customResult = "All good!";
+                    vm.sysList.push(result);
                 });
             });
         };

@@ -145,5 +145,12 @@ Mock.mock("/angular/version/createVersion.htm", {
         { sysCnname: 'aa', processNum: 0, finishNum: 0, reposName: "aa" }
     }
 });
-Mock.mock("/angular/system/dialog.htm","<div>hhh</div>" 
-);
+//添加系统
+Mock.mock("/angular/system/createSystem.htm",{
+    errCode: '0',
+    errMsg: '',
+    data: {
+        data:
+        { sysId: "3656", sysCnname: "bali", processNum: 0, finishNum: 0, reposName: "cooke", environment:"linux" }
+    }
+});

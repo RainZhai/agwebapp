@@ -1,29 +1,16 @@
-angular.module('sncd').controller('CreateSystemCtrl', ['$scope', 'SystemService', '$state', '$stateParams', 'close', 
-    function ($scope, SystemService, $state, $stateParams,close) {
-        var sysId = $stateParams.id;
-        $scope.students = [
-            { Name: '小李', Id: '201401201', Grade: '计算机技术' }
-        ];
-        $scope.add = function () {
-            $scope.students.push({ Name: $scope.newName, Id: $scope.newId, Grade: $scope.newGrade });
-            $scope.newName = '';
-            $scope.newId = '';
-            $scope.newGrade = '';
-
-            var params = { sysId: sysId, sysCnname: '项目1', processNum: 0, finishNum: 0, reposName: "wsd" };
-            //add version
-            VersionManageService.createVersion(params).then(function (result) {
-                $state.go("VersionInProgress", {
-                    data: result.data
-                });
-            });
-        };
-
-        $scope.close = function(result) {
+angular.module('sncd').controller('CreateSystemCtrl', ['$scope', 'SystemService', '$state', '$stateParams', 'close',
+    function ($scope, SystemService, $state, $stateParams, close) {
+        var vm = $scope;
+        vm.sysCnname = "", vm.processNum = 0, vm.finishNum = 0, vm.reposName = "", vm.environment = "mac";
+        $scope.close = function (result) {
             close();
         };
 
         $scope.save = function (result) {
-            close();
+            var params = { sysId: "3656", sysCnname: "bali", processNum: 0, finishNum: 0, reposName: "cooke", environment: "linux" };
+            //add version
+            SystemService.createSystem(params).then(function (result) {
+                close(result.data);
+            });
         };
     }]);
