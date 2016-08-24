@@ -1,4 +1,4 @@
-app = angular.module("sncd", ["ui.router", "sn.controls","angularModalService","ngAnimate"]);
+app = angular.module("sncd", ["ui.router", "sn.controls","angularModalService","ngAnimate",'ivh.treeview']);
  
 //app = angular.module('sncd', []);
 //使用mockjax方法覆盖Ajax请求
@@ -122,15 +122,7 @@ angular.module("sncd").config(function($stateProvider, $urlRouterProvider) {
             url: '/my-quality',
             templateUrl: 'modules/sncd/templates/quality/quality-center.html',
             controller: 'QualityCenterCtrl'
-        })
-
-        //发布
-        .state('Publish', {
-            url: '/publish',
-            templateUrl: 'modules/sncd/templates/publish/publish-list.html',
-            controller: 'PublishListCtrl'
-        })
-
+        })  
 });
 
 angular.module("sncd").factory('noCacheInterceptor', function() {
