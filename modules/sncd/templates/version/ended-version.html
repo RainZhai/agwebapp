@@ -4,10 +4,9 @@
             <h3>已结束版本</h3>
         </div>
         <div class="panel-body">
-            <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap">
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="dataTables_length" id="example1_length"><label>Show <select name="example1_length" aria-controls="example1" class="form-control input-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div>
                     </div>
                     <div class="col-sm-6">
                         <div class="input-group pull-right global-search">
@@ -34,11 +33,11 @@
                                     <td></td>
                                     <td><input type="text" ng-model="vm.filter.id" class="form-control" /></td>
                                     <td><input type="text" ng-model="vm.filter.name" class="form-control" /></td>
-                                    <td><input type="number" ng-model="vm.filter.followers" class="form-control" /></td>
-                                    <td><input type="number" ng-model="vm.filter.birthday" class="form-control" /></td>
-                                    <td><input type="number" ng-model="vm.filter.income" class="form-control" /></td>
+                                    <td><input type="text" ng-model="vm.filter.followers" class="form-control" /></td>
+                                    <td><input type="text" ng-model="vm.filter.birthday" class="form-control" /></td>
+                                    <td><input type="text" ng-model="vm.filter.income" class="form-control" /></td>
                                 </tr>
-                                <tr ng-repeat="item in vm.items|filter:titleFilter:vm.filter|orderBy:vm.sort.column:vm.sort.direction===-1">
+                                <tr ng-repeat="item in vm.items|filter:titleFilter|filter: vm.filter|orderBy:vm.sort.column:vm.sort.direction===-1">
                                     <td><input type="checkbox" ng-model="item.$checked " /></td>
                                     <td>{{item.id}}</td>
                                     <td>{{item.name}}</td>

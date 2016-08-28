@@ -1,11 +1,11 @@
 angular.module('sncd').controller('EndedVersionCtrl', ['$scope', 'VersionManageService', '$state', '$stateParams',
     function ($scope, VersionManageService, $state, $stateParams) {
-
+        'use strict';
         var vm = $scope.vm = {};
-        pager = vm.pager = {
+        var pager = $scope.pager = {
             currentPage: 1,
-            itemsPerPage: 5,
-            listSize: 5,
+            itemsPerPage: 10,
+            listSize: 10,
             totalItems: 0
         };
         vm.sort = {
@@ -23,6 +23,7 @@ angular.module('sncd').controller('EndedVersionCtrl', ['$scope', 'VersionManageS
                 }
             }
         };
+        vm.filter = {};
         //栏目名称
         vm.columns = [
             {
@@ -69,19 +70,37 @@ angular.module('sncd').controller('EndedVersionCtrl', ['$scope', 'VersionManageS
         vm.age = function (birthday) {
             return moment().diff(birthday, 'years');
         };
-        // 生成演示数据
-        var MAX_NUM = 10;
         function rand(min, max) {
             return min + Math.round(Math.random() * (max - min));
         }
-        for (var i = 0; i < MAX_NUM; ++i) {
-            var id = rand(0, MAX_NUM);
-            vm.items.push({
-                id: i + 1,
-                name: 'Name' + id, // 字符串类型
-                followers: rand(0, 100 * 1000 * 1000), // 数字类型
-                birthday: moment().subtract('day', rand(365, 365 * 50)).toDate(), // 日期类型
-                income: rand(1000, 100000) // 金额类型
-            });
+        function init() {
+            // 生成演示数据
+            var MAX_NUM = 10;
+            for (var i = 0; i < MAX_NUM; ++i) {
+                var id = rand(0, MAX_NUM);
+                vm.items.push({
+                    id: i + 1,
+                    name: 'Name' + id, // 字符串类型
+                    followers: rand(0, 100 * 1000 * 1000), // 数字类型
+                    birthday: moment().subtract('day', rand(365, 365 * 50)).toDate(), // 日期类型
+                    income: rand(1000, 100000) // 金额类型
+                });
+            }
+
+            $scope.pager.totalItems = 22;
+            //定位到某一页
+            $scope.pager.currentPage = 1;
+            $scope.$broadcast('sn.controls.pager:toPage', $scope.pager.currentPage);
         }
+
+        //分页
+        $scope.$on('sn.controls.pager:pageIndexChanged', function (evt, page) {
+            evt.stopPropagation();
+            pager.currentPage = page.pageIndex + 1;
+            init();
+        });
+
+        init();
+        debugger
+        return $scope;
     }]);
